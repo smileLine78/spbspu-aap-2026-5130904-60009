@@ -113,14 +113,9 @@ namespace shulzhenko
       return false;
     }
 
-    if (cols != 0 && rows > static_cast<std::size_t>(-1) / cols)
-    {
-      return false;
-    }
-
     const std::size_t total = rows * cols;
-    int result1 = 0;
-    int result2 = 0;
+    long long int result1 = 0;
+    long long int result2 = 0;
 
     if (mode == '1')
     {
