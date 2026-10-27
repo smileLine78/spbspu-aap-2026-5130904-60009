@@ -22,8 +22,8 @@ namespace shulzhenko
       return false;
     }
 
-    rows = static_cast<std::size_t>(rows_val);
-    cols = static_cast<std::size_t>(cols_val);
+    rows = static_cast< std::size_t >(rows_val);
+    cols = static_cast< std::size_t >(cols_val);
     return true;
   }
 
