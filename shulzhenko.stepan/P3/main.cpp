@@ -6,12 +6,14 @@ namespace shulzhenko
 {
   int readSize(std::istream &input, size_t &rows, size_t &cols)
   {
-    size_t rowsVal = 0;
-    size_t colsVal = 0;
+    long long int rowsVal = 0;
+    long long int colsVal = 0;
     if (!(input >> rowsVal >> colsVal))
     {
       return false;
     }
+    rows = static_cast<std::size_t>(rowsVal);
+    cols = static_cast<std::size_t>(colsVal);
 
     if (rowsVal < 0 || colsVal < 0)
     {
@@ -98,7 +100,7 @@ namespace shulzhenko
     {
       return false;
     }
-    size_t max_size = 10000;
+    constexpr size_t max_size = 10000;
     if (mode == '1')
     {
       if (total > max_size)
