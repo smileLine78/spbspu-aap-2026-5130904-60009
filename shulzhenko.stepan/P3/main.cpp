@@ -4,6 +4,7 @@
 
 namespace shulzhenko
 {
+  constexpr size_t max_size = 10000;
   int readSize(std::istream &input, size_t &rows, size_t &cols)
   {
     long long int rowsVal = 0;
@@ -93,14 +94,15 @@ namespace shulzhenko
   {
     size_t rows = 0;
     size_t cols = 0;
-    size_t total = rows * cols;
     int result1 = 0;
     int result2 = 0;
-    if (!(input >> rows >> cols))
+    if (!readSize(input, rows, cols))
     {
       return false;
     }
-    constexpr size_t max_size = 10000;
+
+    size_t total = rows * cols;
+
     if (mode == '1')
     {
       if (total > max_size)
@@ -114,21 +116,20 @@ namespace shulzhenko
         return false;
       }
 
-      if (!readSize(input, rows, cols))
-      {
-        return 2;
-      }
-
       result1 = notSameElements(matrix, rows, cols);
       result2 = minSum(matrix, rows, cols);
     }
     else
     {
-      int *matrix = new int[total];
-      if (!readElements(input, matrix, total))
+      int *matrix = nullptr;
+      if (total > 0)
       {
-        delete[] matrix;
-        return false;
+        matrix = new int[total];
+        if (!readElements(input, matrix, total))
+        {
+          delete[] matrix;
+          return false;
+        }
       }
 
       result1 = notSameElements(matrix, rows, cols);
